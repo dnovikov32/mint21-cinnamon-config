@@ -1,0 +1,4 @@
+/* Fix gap between splitted terminals in terminator application */
+.terminator-terminal-window separator {
+  background: #303030;
+}
