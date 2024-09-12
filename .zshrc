@@ -70,11 +70,24 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+#
+# Before enable plugins
+# git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/plugins/zsh-autosuggestions
+#
+plugins=(
+	git
+	zsh-autosuggestions
+	history-substring-search
+)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+# Highlighting:
+# Before enable plugins 
+# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
+source $HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Remove hostname:
 prompt_context() {} 
