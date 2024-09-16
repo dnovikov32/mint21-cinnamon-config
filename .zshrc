@@ -23,6 +23,9 @@ ZSH_THEME="agnoster"
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
+HISTSIZE=1000
+HISTFILESIZE=2000
+
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
@@ -132,5 +135,6 @@ alias copy='xsel -ib'
 alias paste='xsel --clipboard'
 
 alias gs='git status'
+alias gch='git checkout '
 
 alias python='python3'
