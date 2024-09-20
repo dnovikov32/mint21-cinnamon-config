@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -8,7 +15,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -22,9 +29,6 @@ ZSH_THEME="agnoster"
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
-
-HISTSIZE=1000
-HISTFILESIZE=2000
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
@@ -74,11 +78,7 @@ HISTFILESIZE=2000
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #
-# Before enable plugins
-# git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/plugins/zsh-autosuggestions
-#
 plugins=(
-	git
 	zsh-autosuggestions
 	history-substring-search
 )
@@ -87,10 +87,17 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 # Highlighting:
 # Before enable plugins 
 # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
 source $HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.oh-my-zsh/plugins/history-substring-search/history-substring-search.zsh
 
 # Remove hostname:
 prompt_context() {} 
@@ -128,13 +135,20 @@ export NVM_DIR="$HOME/.nvm"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# eza - ls alias
+alias ls='eza --group-directories-first'
+alias l='eza  --oneline --group-directories-first --all  --classify'
+alias ll='eza --header --group-directories-first --long --group --classify --all --extended'
+alias lm='eza --header --group-directories-first --long --group --classify --all --extended --sort=modified'
+alias lt='eza --header --group-directories-first --tree --group --level 2'
 
-alias lg='ll -a | grep '
-alias hg='history | grep '
-alias copy='xsel -ib'
-alias paste='xsel --clipboard'
-
+# Git alias
 alias gs='git status'
-alias gch='git checkout '
+alias gch='git checkout'
+
+alias hg='history | grep '
 
 alias python='python3'
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
