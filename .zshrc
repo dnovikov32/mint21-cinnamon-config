@@ -77,7 +77,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-#
+# Before enable plugins
+# git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 plugins=(
 	zsh-autosuggestions
 	history-substring-search
@@ -94,13 +95,13 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 # Highlighting:
-# Before enable plugins 
+# Before enable plugins
 # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
 source $HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/.oh-my-zsh/plugins/history-substring-search/history-substring-search.zsh
 
 # Remove hostname:
-prompt_context() {} 
+prompt_context() {}
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -108,7 +109,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-#. "$HOME/.cargo/env"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -143,10 +143,8 @@ alias lm='eza --header --group-directories-first --long --group --classify --all
 alias lt='eza --header --group-directories-first --tree --group --level 2'
 
 # Git alias
-alias gs='git status'
+alias gs='git branch --show-current | xclip -r -selection clipboard | git status'
 alias gch='git checkout'
-
-alias hg='history | grep '
 
 alias python='python3'
 
